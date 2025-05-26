@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketplace - 売ります買います掲示板</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Marketplace</h1>
+    <p class="subtitle">売ります・買います 個人売買掲示板</p>
+  </header>
+  <main>
+    <section id="post-form-section">
+      <form id="post-form">
+        <input type="text" id="title" placeholder="商品タイトル" required>
+        <input type="number" id="price" placeholder="価格 (円)" min="0" required>
+        <textarea id="description" placeholder="商品の説明" required></textarea>
+        <button type="submit">投稿する</button>
+      </form>
+    </section>
+    <section id="marketplace-list">
+      <h2>出品一覧</h2>
+      <ul id="posts"></ul>
+    </section>
+  </main>
+  <footer>
+    <small>&copy; 2024 Marketplace</small>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html> 
