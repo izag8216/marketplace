@@ -1,0 +1,18 @@
+=== MARKETPLACE TRADING DATA ===
+Generated: 2025/5/26 11:57:00
+Total Items: 3
+
+[1] iPhone 13 Pro 256GB
+Price: ¥85,000
+Description: Excellent condition, all accessories included. SIM-free.
+---
+
+[2] MacBook Air M1
+Price: ¥95,000
+Description: 2021 model, battery in good health. Box included.
+---
+
+[3] Nintendo Switch
+Price: ¥25,000
+Description: Fully functional, includes Joy-Con grip.
+---
