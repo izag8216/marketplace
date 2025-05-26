@@ -1,55 +1,55 @@
-// Marketplace 投稿管理（ローカルストレージ利用）
+// Marketplace Post Management (using localStorage)
 document.addEventListener('DOMContentLoaded', () => {
   const postForm = document.getElementById('post-form');
   const postsList = document.getElementById('posts');
 
-  // サンプルデータ
+  // Sample data (English)
   const samplePosts = [
-    { title: 'iPhone 13 Pro 256GB', price: 85000, description: '美品・付属品完備。SIMフリー。' },
-    { title: 'MacBook Air M1', price: 95000, description: '2021年モデル、バッテリー良好。箱あり。' },
-    { title: 'Nintendo Switch', price: 25000, description: '動作確認済み、Joy-Conグリップ付属。' },
-    { title: 'AirPods Pro 第2世代', price: 22000, description: 'ケースに小傷あり。動作問題なし。' },
-    { title: 'Kindle Paperwhite', price: 8000, description: '広告なしモデル。カバー付き。' },
-    { title: 'SONY WH-1000XM4', price: 27000, description: 'ノイズキャンセリング最高峰。' },
-    { title: 'ロジクール MX Master 3', price: 7000, description: 'ワイヤレスマウス。美品。' },
-    { title: 'Dell 27インチ 4Kモニター', price: 32000, description: 'U2720Q。ドット抜けなし。' },
-    { title: 'PS5 本体', price: 65000, description: 'ディスクドライブ搭載モデル。' },
-    { title: 'GoPro HERO10', price: 38000, description: '付属品多数。動作良好。' },
-    { title: 'BOSE SoundLink Mini II', price: 9000, description: 'Bluetoothスピーカー。' },
-    { title: 'Apple Watch SE 40mm', price: 18000, description: 'バンド2本付き。' },
-    { title: 'Surface Pro 7', price: 60000, description: 'タイプカバー・ペン付属。' },
-    { title: 'Canon EOS Kiss M2', price: 52000, description: '標準レンズキット。' },
-    { title: 'ルンバ i7+', price: 48000, description: '自動ゴミ収集機付き。' },
-    { title: 'SHARP 加湿空気清浄機', price: 12000, description: '2022年製。美品。' },
-    { title: 'Yogibo Max', price: 18000, description: 'カバー洗濯済み。' },
-    { title: 'Dyson V8 Slim', price: 25000, description: 'バッテリー良好。付属品あり。' },
-    { title: '任天堂 3DS LL', price: 9000, description: 'ソフト3本付き。' },
-    { title: '無印良品 ステンレスユニットシェルフ', price: 7000, description: '幅86cm×奥行41cm×高さ83cm。' },
+    { title: 'iPhone 13 Pro 256GB', price: 85000, description: 'Excellent condition, all accessories included. SIM-free.' },
+    { title: 'MacBook Air M1', price: 95000, description: '2021 model, battery in good health. Box included.' },
+    { title: 'Nintendo Switch', price: 25000, description: 'Fully functional, includes Joy-Con grip.' },
+    { title: 'AirPods Pro 2nd Gen', price: 22000, description: 'Minor scratches on case. Works perfectly.' },
+    { title: 'Kindle Paperwhite', price: 8000, description: 'Ad-free model. Comes with cover.' },
+    { title: 'SONY WH-1000XM4', price: 27000, description: 'Top-class noise cancelling headphones.' },
+    { title: 'Logitech MX Master 3', price: 7000, description: 'Wireless mouse. Excellent condition.' },
+    { title: 'Dell 27" 4K Monitor', price: 32000, description: 'U2720Q. No dead pixels.' },
+    { title: 'PS5 Console', price: 65000, description: 'Disc drive model.' },
+    { title: 'GoPro HERO10', price: 38000, description: 'Many accessories included. Works great.' },
+    { title: 'BOSE SoundLink Mini II', price: 9000, description: 'Bluetooth speaker.' },
+    { title: 'Apple Watch SE 40mm', price: 18000, description: 'Includes 2 bands.' },
+    { title: 'Surface Pro 7', price: 60000, description: 'Includes type cover and pen.' },
+    { title: 'Canon EOS Kiss M2', price: 52000, description: 'Standard lens kit.' },
+    { title: 'Roomba i7+', price: 48000, description: 'With automatic dirt disposal.' },
+    { title: 'SHARP Humidifier Air Purifier', price: 12000, description: '2022 model. Excellent condition.' },
+    { title: 'Yogibo Max', price: 18000, description: 'Cover washed.' },
+    { title: 'Dyson V8 Slim', price: 25000, description: 'Battery in good health. Includes accessories.' },
+    { title: 'Nintendo 3DS LL', price: 9000, description: 'Includes 3 games.' },
+    { title: 'MUJI Stainless Unit Shelf', price: 7000, description: 'W86cm x D41cm x H83cm.' },
   ];
 
-  // 投稿データの取得
+  // Get posts
   function getPosts() {
     return JSON.parse(localStorage.getItem('marketplace_posts') || '[]');
   }
 
-  // 投稿データの保存
+  // Save posts
   function savePosts(posts) {
     localStorage.setItem('marketplace_posts', JSON.stringify(posts));
   }
 
-  // 初回のみサンプルデータ投入
+  // Insert sample data if needed
   function insertSampleIfNeeded() {
     if (!localStorage.getItem('marketplace_posts')) {
       savePosts(samplePosts);
     }
   }
 
-  // 投稿一覧の描画
+  // Render posts
   function renderPosts() {
     const posts = getPosts();
     postsList.innerHTML = '';
     if (posts.length === 0) {
-      postsList.innerHTML = '<li style="color:#aaa;text-align:center;">まだ投稿がありません</li>';
+      postsList.innerHTML = '<li style="color:#aaa;text-align:center;">No posts yet</li>';
       return;
     }
     posts.forEach(post => {
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 投稿フォーム送信時
+  // On form submit
   postForm.addEventListener('submit', e => {
     e.preventDefault();
     const title = document.getElementById('title').value.trim();

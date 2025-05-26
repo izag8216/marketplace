@@ -1,27 +1,27 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Marketplace - 売ります買います掲示板</title>
+  <title>Marketplace - Buy & Sell Board</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
     <h1>Marketplace</h1>
-    <p class="subtitle">売ります・買います 個人売買掲示板</p>
+    <p class="subtitle">Buy & Sell - Personal Trading Board</p>
   </header>
   <main>
     <section id="post-form-section">
       <form id="post-form">
-        <input type="text" id="title" placeholder="商品タイトル" required>
-        <input type="number" id="price" placeholder="価格 (円)" min="0" required>
-        <textarea id="description" placeholder="商品の説明" required></textarea>
-        <button type="submit">投稿する</button>
+        <input type="text" id="title" placeholder="Product Title" required>
+        <input type="number" id="price" placeholder="Price (JPY)" min="0" required>
+        <textarea id="description" placeholder="Product Description" required></textarea>
+        <button type="submit">Post</button>
       </form>
     </section>
     <section id="marketplace-list">
-      <h2>出品一覧</h2>
+      <h2>Listings</h2>
       <ul id="posts"></ul>
     </section>
   </main>
