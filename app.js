@@ -37,6 +37,30 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('marketplace_posts', JSON.stringify(posts));
   }
 
+  // Save posts to text file (data.txt)
+  function savePostsToTextFile(posts) {
+    let textContent = '=== MARKETPLACE TRADING DATA ===\n';
+    textContent += `Generated: ${new Date().toLocaleString('ja-JP')}\n`;
+    textContent += `Total Items: ${posts.length}\n\n`;
+    
+    posts.forEach((post, index) => {
+      textContent += `[${index + 1}] ${post.title}\n`;
+      textContent += `Price: ¥${Number(post.price).toLocaleString()}\n`;
+      textContent += `Description: ${post.description}\n`;
+      textContent += '---\n\n';
+    });
+    
+    const blob = new Blob([textContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'data.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
   // Insert sample data if needed
   function insertSampleIfNeeded() {
     if (!localStorage.getItem('marketplace_posts')) {
@@ -76,6 +100,12 @@ document.addEventListener('DOMContentLoaded', () => {
     savePosts(posts);
     renderPosts();
     postForm.reset();
+  });
+
+  // Export button functionality
+  document.getElementById('export-btn').addEventListener('click', () => {
+    const posts = getPosts();
+    savePostsToTextFile(posts);
   });
 
   insertSampleIfNeeded();
